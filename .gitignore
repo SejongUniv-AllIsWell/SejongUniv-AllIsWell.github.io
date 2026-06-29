@@ -1,0 +1,15 @@
+.DS_Store
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+
+*.log
+.env
+.env.*
+
+node_modules/
+.cache/
+.parcel-cache/
+dist/
+build/
+
