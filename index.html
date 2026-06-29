@@ -6,7 +6,7 @@
     <title>Modutwin | Modular Indoor Digital Twins</title>
     <meta
       name="description"
-      content="Modutwin creates modular indoor digital twins from 3D Gaussian Splatting assets using door-based alignment."
+      content="A modular indoor digital twin system that aligns room-level 3DGS assets using door geometry."
     />
     <meta property="og:title" content="Modutwin" />
     <meta
@@ -17,297 +17,247 @@
       property="og:image"
       content="https://sejonguniv-alliswell.github.io/assets/media/corridor_after.gif"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top">Modutwin</a>
-      <nav aria-label="Page sections">
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#evaluation">Evaluation</a>
-      </nav>
-    </header>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Modutwin</h1>
+              <h2 class="subtitle publication-subtitle">
+                Modular Indoor Digital Twins via Door-Based Alignment of 3D Gaussian Splatting Assets
+              </h2>
 
-    <main id="top">
-      <section class="hero">
-        <p class="eyebrow">KCGS 2026 Project Page</p>
-        <h1>Modutwin</h1>
-        <p class="subtitle">
-          Modular Indoor Digital Twins via Door-Based Alignment of 3D Gaussian
-          Splatting Assets
-        </p>
-        <p class="authors">Sejong University · AllIsWell</p>
-        <div class="actions" aria-label="Project links">
-          <a class="primary" href="https://github.com/user-attachments/files/29479934/KCGS2026.pdf" target="_blank" rel="noreferrer">Paper PDF</a>
-          <a href="https://github.com/SejongUniv-AllIsWell/SejongUniv-AllIsWell.github.io" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://youtu.be/1Raxe9ffwnc" target="_blank" rel="noreferrer">Demo Video</a>
-          <a href="https://splat.wiki" target="_blank" rel="noreferrer">Website</a>
-        </div>
-      </section>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">Sejong University · AllIsWell</span>
+              </div>
 
-      <section class="teaser" aria-label="Before and after comparison">
-        <div class="comparison">
-          <figure>
-            <img
-              src="assets/media/corridor_before.gif"
-              alt="Before alignment, the digital twin contains only the corridor"
-            />
-            <figcaption>Before: corridor-only digital twin</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="assets/media/corridor_after.gif"
-              alt="After alignment, room modules are connected to the corridor"
-            />
-            <figcaption>After: rooms connected through door-based alignment</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="content-section intro">
-        <h2>Abstract</h2>
-        <p>
-          Modutwin is a web platform for building indoor digital twins from
-          independently captured 3D Gaussian Splatting assets. The system refines
-          room-level splats, extracts door geometry, aligns modules to a shared
-          basemap through door-based registration, and preserves interactive door
-          assets in the final composed scene.
-        </p>
-      </section>
-
-      <section id="method" class="content-section">
-        <div class="section-heading">
-          <p class="eyebrow">Pipeline</p>
-          <h2>From Separate Rooms to a Connected Indoor Scene</h2>
-        </div>
-        <div class="steps">
-          <article>
-            <span>01</span>
-            <h3>3DGS Asset Refinement</h3>
-            <p>Remove outer Gaussians and generate boundary meshes to prevent module overlap.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Door Corner Extraction</h3>
-            <p>Use SAM3-assisted detection to obtain door corner constraints for registration.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Door-Based Alignment</h3>
-            <p>Estimate transforms that attach room modules to the corridor basemap through doors.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Door Interaction</h3>
-            <p>Keep door assets grouped so the final digital twin supports open and close motion.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="results" class="content-section">
-        <div class="section-heading">
-          <p class="eyebrow">Core Features</p>
-          <h2>Refinement, Alignment, and Interaction</h2>
-        </div>
-
-        <div class="feature-block">
-          <div>
-            <h3>3DGS Asset Refinement</h3>
-            <p>
-              Indoor assets may include geometry outside the intended room boundary.
-              Refinement removes boundary-crossing Gaussians while preserving the
-              visible appearance of each captured space.
-            </p>
+              <div class="publication-links">
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" href="KCGS2026paper.pdf" target="_blank" rel="noreferrer">
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" href="https://github.com/SejongUniv-AllIsWell/SejongUniv-AllIsWell.github.io" target="_blank" rel="noreferrer">
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" href="https://youtu.be/1Raxe9ffwnc" target="_blank" rel="noreferrer">
+                    <span>Demo Video</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" href="https://splat.wiki" target="_blank" rel="noreferrer">
+                    <span>Website</span>
+                  </a>
+                </span>
+              </div>
+            </div>
           </div>
-          <figure>
-            <img
-              src="assets/media/unrefined_overlap.gif"
-              alt="Unrefined indoor modules overlapping"
-            />
-            <figcaption>Without refinement, independently reconstructed modules overlap.</figcaption>
-          </figure>
         </div>
+      </div>
+    </section>
 
-        <div class="image-grid three">
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <div class="teaser-grid">
+            <figure>
+              <img src="assets/media/corridor_before.gif" alt="Before alignment, corridor-only digital twin" />
+              <figcaption>Before: corridor-only digital twin</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/media/corridor_after.gif" alt="After alignment, rooms connected to the corridor" />
+              <figcaption>After: rooms connected through door-based alignment</figcaption>
+            </figure>
+          </div>
+          <h2 class="subtitle has-text-centered teaser-caption">
+            Room-level 3DGS assets are refined and connected through the rectangular structure of doors.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                This work proposes a modular indoor digital twin construction method based on room-level 3D Gaussian Splatting assets. To prevent visual conflicts between adjacent modules, Gaussians outside the room boundary or crossing the boundary are removed, and their visual information is baked into boundary mesh textures. New room modules are then aligned to the existing digital twin using the four corners of corresponding door regions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-small">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <div class="content">
+              <h2 class="title is-3">Method Overview</h2>
+              <p>
+                Users upload room-level 3DGS assets, define room boundary planes, and specify door regions using four corners. Door corners can be selected manually in the viewer or estimated with SAM3. The system refines each asset, separates the door region, and computes the transform needed to connect the new module to the existing scene.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="result-grid">
+            <figure>
+              <img src="assets/media/unrefined_overlap.gif" alt="Unrefined indoor modules overlapping" />
+              <figcaption><strong>Without refinement.</strong> Independently reconstructed modules overlap.</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/media/after_connect.png" alt="Refined room module connected to the scene" />
+              <figcaption><strong>After refinement.</strong> Boundary meshes and baked textures preserve the room appearance.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">3DGS Asset Refinement</h2>
+        <div class="image-row three">
           <figure>
-            <img
-              src="assets/media/out_1_cropped.png"
-              alt="Original room asset before refinement"
-            />
+            <img src="assets/media/out_1_cropped.png" alt="Original 3DGS asset" />
             <figcaption>Original</figcaption>
           </figure>
           <figure>
-            <img
-              src="assets/media/out_2_cropped.png"
-              alt="Room asset after outer Gaussian removal"
-            />
+            <img src="assets/media/out_2_cropped.png" alt="After outer Gaussian removal" />
             <figcaption>Outer Gaussian Removal</figcaption>
           </figure>
           <figure>
-            <img
-              src="assets/media/out_3_cropped.png"
-              alt="Room asset after boundary mesh generation"
-            />
+            <img src="assets/media/out_3_cropped.png" alt="After boundary mesh generation" />
             <figcaption>Boundary Mesh Generation</figcaption>
           </figure>
-        </div>
-
-        <div class="image-grid three second-row">
           <figure>
-            <img
-              src="assets/media/in_1_cropped.png"
-              alt="Input room asset before refinement"
-            />
+            <img src="assets/media/in_1_cropped.png" alt="Original room asset" />
             <figcaption>Original</figcaption>
           </figure>
           <figure>
-            <img
-              src="assets/media/in_2_cropped.png"
-              alt="Input room asset after outer Gaussian removal"
-            />
+            <img src="assets/media/in_2_cropped.png" alt="Room asset after outer Gaussian removal" />
             <figcaption>Outer Gaussian Removal</figcaption>
           </figure>
           <figure>
-            <img
-              src="assets/media/in_3_cropped.png"
-              alt="Input room asset after boundary mesh generation"
-            />
+            <img src="assets/media/in_3_cropped.png" alt="Room asset after boundary mesh generation" />
             <figcaption>Boundary Mesh Generation</figcaption>
           </figure>
         </div>
+      </div>
+    </section>
 
-        <div class="feature-block reverse">
+    <section class="section hero is-small">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Door Extraction and Alignment</h2>
+        <div class="result-grid">
           <figure>
-            <img
-              src="assets/media/after_connect.png"
-              alt="Room asset connected after refinement"
-            />
-            <figcaption>Refined room module connected to the scene.</figcaption>
-          </figure>
-          <div>
-            <h3>Connecting Refined Assets</h3>
-            <p>
-              After refinement, room modules can be composed without visible boundary
-              conflicts, making the scene easier to inspect and edit in the platform.
-            </p>
-          </div>
-        </div>
-
-        <div class="image-grid two">
-          <figure>
-            <img
-              src="assets/media/sam3.gif"
-              alt="SAM3-assisted automatic door corner extraction"
-            />
+            <img src="assets/media/sam3.gif" alt="SAM3-assisted door corner extraction" />
             <figcaption>Automatic door corner extraction using SAM3.</figcaption>
           </figure>
           <figure>
-            <img
-              src="assets/media/alignment.gif"
-              alt="Automatic door-based module alignment"
-            />
-            <figcaption>Automatic door-based alignment.</figcaption>
+            <img src="assets/media/alignment.gif" alt="Automatic door-based module alignment" />
+            <figcaption>Door-based alignment using corresponding door corners.</figcaption>
           </figure>
         </div>
+      </div>
+    </section>
 
-        <figure class="wide-figure">
-          <img
-            src="assets/media/door_openclose.gif"
-            alt="Interactive door opening and closing in the viewer"
-          />
-          <figcaption>Interactive door opening and closing in the composed digital twin.</figcaption>
-        </figure>
-      </section>
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img src="assets/media/door_openclose.gif" alt="Interactive door opening and closing in the viewer" />
+          <h2 class="subtitle has-text-centered teaser-caption">
+            Door mesh and Gaussian assets are separated as an independent element so that open and close interaction remains possible after alignment.
+          </h2>
+        </div>
+      </div>
+    </section>
 
-      <section id="evaluation" class="content-section">
-        <div class="section-heading">
-          <p class="eyebrow">Evaluation</p>
-          <h2>Appearance Preservation Before and After Refinement</h2>
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Appearance Preservation Evaluation</h2>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Asset</th>
+                    <th>PSNR ↑</th>
+                    <th>SSIM ↑</th>
+                    <th>LPIPS ↓</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Asset 1</td>
+                    <td>31.85 dB</td>
+                    <td>0.9759</td>
+                    <td>0.0540</td>
+                  </tr>
+                  <tr>
+                    <td>Asset 2</td>
+                    <td>30.48 dB</td>
+                    <td>0.9705</td>
+                    <td>0.0699</td>
+                  </tr>
+                  <tr>
+                    <td>Asset 3</td>
+                    <td>29.54 dB</td>
+                    <td>0.9693</td>
+                    <td>0.0584</td>
+                  </tr>
+                  <tr>
+                    <td>Asset 4</td>
+                    <td>31.24 dB</td>
+                    <td>0.9476</td>
+                    <td>0.0384</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Average</strong></td>
+                    <td><strong>30.78 dB</strong></td>
+                    <td><strong>0.9658</strong></td>
+                    <td><strong>0.0552</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Asset</th>
-                <th>PSNR ↑</th>
-                <th>SSIM ↑</th>
-                <th>LPIPS ↓</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Asset 1</td>
-                <td>31.85 dB</td>
-                <td>0.9759</td>
-                <td>0.0540</td>
-              </tr>
-              <tr>
-                <td>Asset 2</td>
-                <td>30.48 dB</td>
-                <td>0.9705</td>
-                <td>0.0699</td>
-              </tr>
-              <tr>
-                <td>Asset 3</td>
-                <td>29.54 dB</td>
-                <td>0.9693</td>
-                <td>0.0584</td>
-              </tr>
-              <tr>
-                <td>Asset 4</td>
-                <td>31.24 dB</td>
-                <td>0.9476</td>
-                <td>0.0384</td>
-              </tr>
-              <tr class="average">
-                <td>Average</td>
-                <td>30.78 dB</td>
-                <td>0.9658</td>
-                <td>0.0552</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-section future">
-        <div>
-          <p class="eyebrow">Future Work</p>
-          <h2>Automatic Room Boundary Surface Extraction</h2>
-          <p>
-            Future development targets PointNet++-based boundary inference for
-            ceiling, floor, and wall surfaces directly from Gaussian point clouds.
-          </p>
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the
+                <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noreferrer">Academic Project Page Template</a>.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="image-grid two compact">
-          <figure>
-            <img
-              src="https://github.com/user-attachments/assets/6f459332-8532-4fc7-8f9a-bd4e6cdaf91a"
-              alt="Ceiling and floor boundary extraction preview"
-            />
-            <figcaption>Ceiling and floor</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="https://github.com/user-attachments/assets/c86a9be7-db51-4542-ada6-3ec6f11fb26d"
-              alt="Wall boundary extraction preview"
-            />
-            <figcaption>Walls</figcaption>
-          </figure>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <p>Modutwin · Sejong University AllIsWell</p>
-      <p>
-        <a href="https://github.com/user-attachments/files/29479934/KCGS2026.pdf" target="_blank" rel="noreferrer">Paper</a>
-        <span>/</span>
-        <a href="https://github.com/SejongUniv-AllIsWell/SejongUniv-AllIsWell.github.io" target="_blank" rel="noreferrer">GitHub</a>
-        <span>/</span>
-        <a href="https://youtu.be/1Raxe9ffwnc" target="_blank" rel="noreferrer">Demo</a>
-      </p>
+      </div>
     </footer>
   </body>
 </html>
