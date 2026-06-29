@@ -34,18 +34,20 @@
               </h2>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Sejong University · AllIsWell</span>
+                <span class="author-block">Kyu-min Lee,</span>
+                <span class="author-block">Jae-hwan Kim,</span>
+                <span class="author-block">Jae-hoon Park,</span>
+                <span class="author-block">Seoung-jun Cho,</span>
+                <span class="author-block">Oh-young Song</span>
+              </div>
+              <div class="is-size-5 publication-authors publication-affiliation">
+                <span class="author-block">Sejong University</span>
               </div>
 
               <div class="publication-links">
                 <span class="link-block">
                   <a class="external-link button is-normal is-rounded is-dark" href="KCGS2026paper.pdf" target="_blank" rel="noreferrer">
                     <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a class="external-link button is-normal is-rounded is-dark" href="https://github.com/SejongUniv-AllIsWell/SejongUniv-AllIsWell.github.io" target="_blank" rel="noreferrer">
-                    <span>Code</span>
                   </a>
                 </span>
                 <span class="link-block">
@@ -79,22 +81,26 @@
             </figure>
           </div>
           <h2 class="subtitle has-text-centered teaser-caption">
-            Room-level 3DGS assets are refined and connected through the rectangular structure of doors.
+            Room-level 3DGS assets are refined and aligned through corresponding door regions.
           </h2>
         </div>
       </div>
     </section>
 
-    <section class="section hero is-light">
+    <section class="section hero is-light overview">
       <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
-            <div class="content has-text-justified">
-              <p>
-                This work proposes a modular indoor digital twin construction method based on room-level 3D Gaussian Splatting assets. To prevent visual conflicts between adjacent modules, Gaussians outside the room boundary or crossing the boundary are removed, and their visual information is baked into boundary mesh textures. New room modules are then aligned to the existing digital twin using the four corners of corresponding door regions.
-              </p>
-            </div>
+        <div class="overview-grid">
+          <div class="overview-item">
+            <h2 class="title is-3">Refine</h2>
+            <p>Remove outer and boundary-crossing Gaussians, then bake their appearance into boundary mesh textures.</p>
+          </div>
+          <div class="overview-item">
+            <h2 class="title is-3">Align</h2>
+            <p>Use the four corners of corresponding door regions to connect room modules to the existing digital twin.</p>
+          </div>
+          <div class="overview-item">
+            <h2 class="title is-3">Interact</h2>
+            <p>Separate door mesh and Gaussian assets as an independent element for open and close interaction.</p>
           </div>
         </div>
       </div>
@@ -102,32 +108,16 @@
 
     <section class="section hero is-small">
       <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column is-full">
-            <div class="content">
-              <h2 class="title is-3">Method Overview</h2>
-              <p>
-                Users upload room-level 3DGS assets, define room boundary planes, and specify door regions using four corners. Door corners can be selected manually in the viewer or estimated with SAM3. The system refines each asset, separates the door region, and computes the transform needed to connect the new module to the existing scene.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="hero is-small">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-          <div class="result-grid">
+        <h2 class="title is-3 has-text-centered">Core Results</h2>
+          <div class="result-grid compact-results">
             <figure>
               <img src="assets/media/unrefined_overlap.gif" alt="Unrefined indoor modules overlapping" />
-              <figcaption><strong>Without refinement.</strong> Independently reconstructed modules overlap.</figcaption>
+              <figcaption>Unrefined modules overlap.</figcaption>
             </figure>
             <figure>
               <img src="assets/media/after_connect.png" alt="Refined room module connected to the scene" />
-              <figcaption><strong>After refinement.</strong> Boundary meshes and baked textures preserve the room appearance.</figcaption>
+              <figcaption>Refined assets connect cleanly.</figcaption>
             </figure>
-          </div>
         </div>
       </div>
     </section>
@@ -185,7 +175,7 @@
         <div class="hero-body">
           <img src="assets/media/door_openclose.gif" alt="Interactive door opening and closing in the viewer" />
           <h2 class="subtitle has-text-centered teaser-caption">
-            Door mesh and Gaussian assets are separated as an independent element so that open and close interaction remains possible after alignment.
+            Door assets remain interactive after module alignment.
           </h2>
         </div>
       </div>
