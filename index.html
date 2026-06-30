@@ -28,10 +28,10 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h1 class="title is-1 publication-title">Modutwin</h1>
-              <h2 class="subtitle publication-subtitle">
+              <h1 class="title is-1 publication-title">
                 Modular Indoor Digital Twins via Door-Based Alignment of 3D Gaussian Splatting Assets
-              </h2>
+              </h1>
+              <div class="publication-venue">KCGS 2026</div>
 
               <div class="is-size-5 publication-authors">
                 <span class="author-block">Kyu-min Lee,</span>
@@ -47,17 +47,17 @@
               <div class="publication-links">
                 <span class="link-block">
                   <a class="external-link button is-normal is-rounded is-dark" href="KCGS2026paper.pdf" target="_blank" rel="noreferrer">
-                    <span>Paper</span>
+                    <span>📄 Paper</span>
                   </a>
                 </span>
                 <span class="link-block">
                   <a class="external-link button is-normal is-rounded is-dark" href="https://youtu.be/1Raxe9ffwnc" target="_blank" rel="noreferrer">
-                    <span>Demo Video</span>
+                    <span>▶️ Demo Video</span>
                   </a>
                 </span>
                 <span class="link-block">
                   <a class="external-link button is-normal is-rounded is-dark" href="https://splat.wiki" target="_blank" rel="noreferrer">
-                    <span>Website</span>
+                    <span>🌐 Website</span>
                   </a>
                 </span>
               </div>
@@ -80,27 +80,33 @@
               <figcaption>After: rooms connected through door-based alignment</figcaption>
             </figure>
           </div>
-          <h2 class="subtitle has-text-centered teaser-caption">
-            Room-level 3DGS assets are refined and aligned through corresponding door regions.
-          </h2>
         </div>
       </div>
     </section>
 
     <section class="section hero is-light overview">
       <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered section-title">Method Overview</h2>
         <div class="overview-grid">
           <div class="overview-item">
-            <h2 class="title is-3">Refine</h2>
-            <p>Remove outer and boundary-crossing Gaussians, then bake their appearance into boundary mesh textures.</p>
+            <span class="step-number">1</span>
+            <h3 class="title is-4">3DGS Asset Refinement</h3>
+            <p>Remove boundary-crossing Gaussians and bake appearance into boundary mesh textures.</p>
           </div>
           <div class="overview-item">
-            <h2 class="title is-3">Align</h2>
-            <p>Use the four corners of corresponding door regions to connect room modules to the existing digital twin.</p>
+            <span class="step-number">2</span>
+            <h3 class="title is-4">SAM3-Based Door Extraction</h3>
+            <p>Estimate door corner regions for module alignment.</p>
           </div>
           <div class="overview-item">
-            <h2 class="title is-3">Interact</h2>
-            <p>Separate door mesh and Gaussian assets as an independent element for open and close interaction.</p>
+            <span class="step-number">3</span>
+            <h3 class="title is-4">Door-Based Alignment</h3>
+            <p>Register room modules using four corresponding door corners.</p>
+          </div>
+          <div class="overview-item">
+            <span class="step-number">4</span>
+            <h3 class="title is-4">Door Interaction</h3>
+            <p>Keep door-region assets separate for open/close interaction.</p>
           </div>
         </div>
       </div>
@@ -108,80 +114,55 @@
 
     <section class="section hero is-small">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Core Results</h2>
-          <div class="result-grid compact-results">
-            <figure>
-              <img src="assets/media/unrefined_overlap.gif" alt="Unrefined indoor modules overlapping" />
-              <figcaption>Unrefined modules overlap.</figcaption>
-            </figure>
-            <figure>
-              <img src="assets/media/after_connect.png" alt="Refined room module connected to the scene" />
-              <figcaption>Refined assets connect cleanly.</figcaption>
-            </figure>
+        <h2 class="title is-3 has-text-centered section-title">1. 3DGS Asset Refinement</h2>
+        <div class="result-grid refinement-gifs">
+          <figure>
+            <img src="assets/media/out_captioned.gif" alt="Exterior view of 3DGS asset refinement stages" />
+            <figcaption>Exterior view</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/media/in_captioned.gif" alt="Interior view of 3DGS asset refinement stages" />
+            <figcaption>Interior view</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <section class="section hero is-light">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">3DGS Asset Refinement</h2>
-        <div class="image-row three">
-          <figure>
-            <img src="assets/media/out_1_cropped.png" alt="Original 3DGS asset" />
-            <figcaption>Original</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/out_2_cropped.png" alt="After outer Gaussian removal" />
-            <figcaption>Outer Gaussian Removal</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/out_3_cropped.png" alt="After boundary mesh generation" />
-            <figcaption>Boundary Mesh Generation</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/in_1_cropped.png" alt="Original room asset" />
-            <figcaption>Original</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/in_2_cropped.png" alt="Room asset after outer Gaussian removal" />
-            <figcaption>Outer Gaussian Removal</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/in_3_cropped.png" alt="Room asset after boundary mesh generation" />
-            <figcaption>Boundary Mesh Generation</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hero is-small">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Door Extraction and Alignment</h2>
-        <div class="result-grid">
+        <h2 class="title is-3 has-text-centered section-title">2. Door Extraction</h2>
+        <div class="single-visual">
           <figure>
             <img src="assets/media/sam3.gif" alt="SAM3-assisted door corner extraction" />
-            <figcaption>Automatic door corner extraction using SAM3.</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/media/alignment.gif" alt="Automatic door-based module alignment" />
-            <figcaption>Door-based alignment using corresponding door corners.</figcaption>
+            <figcaption>SAM3-based door extraction</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="hero teaser">
+    <section class="section hero is-small">
       <div class="container is-max-desktop">
-        <div class="hero-body">
-          <img src="assets/media/door_openclose.gif" alt="Interactive door opening and closing in the viewer" />
-          <h2 class="subtitle has-text-centered teaser-caption">
-            Door assets remain interactive after module alignment.
-          </h2>
+        <h2 class="title is-3 has-text-centered section-title">3. Door-Based Alignment</h2>
+        <div class="single-visual">
+          <figure>
+            <img src="assets/media/alignment.gif" alt="Automatic door-based module alignment" />
+            <figcaption>Door-based alignment</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
     <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered section-title">4. Door Interaction</h2>
+        <figure class="wide-figure">
+          <img src="assets/media/door_openclose.gif" alt="Interactive door opening and closing in the viewer" />
+          <figcaption>Open/close interaction after module alignment</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section hero is-small">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
