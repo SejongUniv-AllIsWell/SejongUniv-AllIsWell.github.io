@@ -117,11 +117,15 @@
         <h2 class="title is-3 has-text-centered section-title">1. 3DGS Asset Refinement</h2>
         <div class="result-grid refinement-gifs">
           <figure>
-            <img src="assets/media/out_captioned.gif" alt="Exterior view of 3DGS asset refinement stages" />
+            <video class="sync-video" data-sync-group="refinement" muted playsinline preload="auto" aria-label="Exterior view of 3DGS asset refinement stages">
+              <source src="assets/media/out_captioned.mp4" type="video/mp4" />
+            </video>
             <figcaption>Exterior view</figcaption>
           </figure>
           <figure>
-            <img src="assets/media/in_captioned.gif" alt="Interior view of 3DGS asset refinement stages" />
+            <video class="sync-video" data-sync-group="refinement" muted playsinline preload="auto" aria-label="Interior view of 3DGS asset refinement stages">
+              <source src="assets/media/in_captioned.mp4" type="video/mp4" />
+            </video>
             <figcaption>Interior view</figcaption>
           </figure>
         </div>
@@ -230,5 +234,66 @@
         </div>
       </div>
     </footer>
+    <script>
+      (() => {
+        const groups = new Map();
+
+        document.querySelectorAll(".sync-video[data-sync-group]").forEach((video) => {
+          const groupName = video.dataset.syncGroup;
+          if (!groups.has(groupName)) groups.set(groupName, []);
+          groups.get(groupName).push(video);
+        });
+
+        const waitUntilReady = (video) =>
+          new Promise((resolve) => {
+            if (video.readyState >= 3) {
+              resolve();
+              return;
+            }
+
+            const done = () => {
+              video.removeEventListener("canplaythrough", done);
+              video.removeEventListener("loadeddata", done);
+              resolve();
+            };
+
+            video.addEventListener("canplaythrough", done, { once: true });
+            video.addEventListener("loadeddata", done, { once: true });
+            video.load();
+          });
+
+        const startTogether = (videos) => {
+          videos.forEach((video) => {
+            video.pause();
+            video.currentTime = 0;
+          });
+
+          requestAnimationFrame(() => {
+            videos.forEach((video) => {
+              const playback = video.play();
+              if (playback) playback.catch(() => {});
+            });
+          });
+        };
+
+        groups.forEach(async (videos) => {
+          await Promise.all(videos.map(waitUntilReady));
+
+          let restarting = false;
+          videos.forEach((video) => {
+            video.addEventListener("ended", () => {
+              if (restarting) return;
+              restarting = true;
+              startTogether(videos);
+              window.setTimeout(() => {
+                restarting = false;
+              }, 250);
+            });
+          });
+
+          startTogether(videos);
+        });
+      })();
+    </script>
   </body>
 </html>

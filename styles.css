@@ -29,6 +29,11 @@ img {
   height: auto;
 }
 
+video {
+  display: block;
+  max-width: 100%;
+}
+
 .hero-body {
   padding: 2.6rem 1.5rem;
 }
@@ -240,6 +245,10 @@ figure img {
   border-radius: 4px;
 }
 
+figure video {
+  border-radius: 4px;
+}
+
 .teaser-grid figure img {
   width: 100%;
   height: 320px;
@@ -258,6 +267,12 @@ figure img {
 .refinement-gifs figure img {
   height: auto;
   object-fit: initial;
+  background: transparent;
+}
+
+.refinement-gifs figure video {
+  width: 100%;
+  height: auto;
   background: transparent;
 }
 
@@ -451,14 +466,16 @@ th {
   .teaser-grid figure img,
   .result-grid figure img,
   .image-row figure img,
-  .compact-results figure img,
-  .refinement-gifs figure img {
+  .compact-results figure img {
     width: 100%;
     max-width: calc(100vw - 32px);
     height: 220px;
   }
 
-  .refinement-gifs figure img {
+  .refinement-gifs figure img,
+  .refinement-gifs figure video {
+    width: 100%;
+    max-width: calc(100vw - 32px);
     height: auto;
   }
 
