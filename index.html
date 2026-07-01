@@ -34,7 +34,7 @@
               <div class="publication-venue">KCGS 2026</div>
 
               <div class="is-size-5 publication-authors">
-                <span class="author-block">Kyu-min Lee,</span>
+                <span class="author-block"><a href="https://qjayo.github.io/" target="_blank" rel="noreferrer">Kyu-min Lee</a>,</span>
                 <span class="author-block">Jae-hwan Kim,</span>
                 <span class="author-block">Jae-hoon Park,</span>
                 <span class="author-block">Seoung-jun Cho,</span>
@@ -129,6 +129,10 @@
             <figcaption>Interior view</figcaption>
           </figure>
         </div>
+        <p class="section-note">
+          See an unrefined indoor 3DGS asset example:
+          <a href="https://superspl.at/scene/d4342240" target="_blank" rel="noreferrer">Open 3DGS scene</a>.
+        </p>
       </div>
     </section>
 
@@ -214,6 +218,21 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+            <div class="metric-note">
+              <p>
+                This table evaluates appearance preservation by comparing images rendered from the original
+                3DGS assets and the refined assets after exterior Gaussian removal and boundary mesh setup.
+                Images are rendered from random indoor camera viewpoints.
+              </p>
+              <p>
+                <strong>PSNR</strong> measures pixel-level similarity; higher is better
+                (&gt;30 dB: high, 25-30 dB: moderate, &lt;25 dB: noticeable difference).
+                <strong>SSIM</strong> measures structural similarity; higher is better
+                (&gt;0.90: high, 0.80-0.90: moderate, &lt;0.80: noticeable difference).
+                <strong>LPIPS</strong> measures perceptual difference using deep features; lower is better
+                (&lt;0.10: high similarity, 0.10-0.20: moderate difference, &gt;0.20: noticeable difference).
+              </p>
             </div>
           </div>
         </div>
