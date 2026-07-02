@@ -313,6 +313,34 @@ figure video {
   background: #111;
 }
 
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.approach-grid figure img {
+  width: 100%;
+  aspect-ratio: 2272 / 1872;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.approach-grid figure img.fit-stretch {
+  object-fit: fill;
+}
+
+.approach-note {
+  max-width: 900px;
+  margin: 1.25rem auto 0;
+  color: #4a4a4a;
+  font-size: 1rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
 .refinement-gifs figure img {
   height: auto;
   object-fit: initial;
@@ -613,13 +641,15 @@ th {
   .teaser-grid,
   .result-grid,
   .image-row.three,
+  .approach-grid,
   .overview-grid {
     grid-template-columns: 1fr;
   }
 
   .teaser-grid,
   .result-grid,
-  .image-row {
+  .image-row,
+  .approach-grid {
     justify-items: center;
   }
 
@@ -632,10 +662,17 @@ th {
   .teaser-grid figure img,
   .result-grid figure img,
   .image-row figure img,
+  .approach-grid figure img,
   .compact-results figure img {
     width: 100%;
     max-width: calc(100vw - 32px);
-    height: 220px;
+    height: auto;
+  }
+
+  .approach-note {
+    max-width: 285px;
+    font-size: 0.95rem;
+    overflow-wrap: anywhere;
   }
 
   .refinement-gifs figure img,
