@@ -500,6 +500,10 @@ figcaption {
   margin-bottom: 0.9rem;
 }
 
+.modal-panel .title.has-text-centered {
+  margin-left: 2.4rem;
+}
+
 .modal-panel img {
   width: 100%;
   max-height: 58vh;

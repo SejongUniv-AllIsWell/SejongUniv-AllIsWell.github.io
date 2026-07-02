@@ -136,7 +136,7 @@
       </div>
     </section>
 
-    <section class="section hero is-small">
+    <section class="section hero is-light">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered section-title">1. 3DGS Asset Refinement</h2>
         <div class="result-grid refinement-gifs">
@@ -171,6 +171,10 @@
             <p>
               Why remove boundary-crossing Gaussians?
               <a href="#boundary-gaussian-modal" data-modal-target="boundary-gaussian-modal">View explanation</a>.
+            </p>
+            <p>
+              Does this refinement process damage the asset?
+              <a href="#appearance-preservation-modal" data-modal-target="appearance-preservation-modal">View explanation</a>.
             </p>
           </div>
         </div>
@@ -216,7 +220,74 @@
       </div>
     </div>
 
-    <section class="section hero is-light">
+    <div class="modal" id="appearance-preservation-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="appearance-preservation-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" type="button" aria-label="Close modal" data-modal-close>&times;</button>
+        <h3 class="title is-4 has-text-centered" id="appearance-preservation-title">Appearance Preservation Evaluation</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>PSNR ↑</th>
+                <th>SSIM ↑</th>
+                <th>LPIPS ↓</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Asset 1</td>
+                <td>31.85 dB</td>
+                <td>0.9759</td>
+                <td>0.0540</td>
+              </tr>
+              <tr>
+                <td>Asset 2</td>
+                <td>30.48 dB</td>
+                <td>0.9705</td>
+                <td>0.0699</td>
+              </tr>
+              <tr>
+                <td>Asset 3</td>
+                <td>29.54 dB</td>
+                <td>0.9693</td>
+                <td>0.0584</td>
+              </tr>
+              <tr>
+                <td>Asset 4</td>
+                <td>31.24 dB</td>
+                <td>0.9476</td>
+                <td>0.0384</td>
+              </tr>
+              <tr>
+                <td><strong>Average</strong></td>
+                <td><strong>30.78 dB</strong></td>
+                <td><strong>0.9658</strong></td>
+                <td><strong>0.0552</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="metric-note">
+          <p>
+            This table evaluates appearance preservation by comparing images rendered from the original
+            3DGS assets and the refined assets after exterior Gaussian removal and boundary mesh setup.
+            Images are rendered from random indoor camera viewpoints.
+          </p>
+          <p>
+            <strong>PSNR</strong> measures pixel-level similarity; higher is better
+            (&gt;30 dB: high, 25-30 dB: moderate, &lt;25 dB: noticeable difference).
+            <strong>SSIM</strong> measures structural similarity; higher is better
+            (&gt;0.90: high, 0.80-0.90: moderate, &lt;0.80: noticeable difference).
+            <strong>LPIPS</strong> measures perceptual difference using deep features; lower is better
+            (&lt;0.10: high similarity, 0.10-0.20: moderate difference, &gt;0.20: noticeable difference).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="section hero is-small">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered section-title">2. Door Extraction</h2>
         <div class="single-visual">
@@ -232,7 +303,7 @@
       </div>
     </section>
 
-    <section class="section hero is-small">
+    <section class="section hero is-light">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered section-title">3. Door-Based Alignment</h2>
         <div class="single-visual">
@@ -248,7 +319,7 @@
       </div>
     </section>
 
-    <section class="section hero is-light">
+    <section class="section hero is-small">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered section-title">4. Door Interaction</h2>
         <figure class="wide-figure">
@@ -259,75 +330,6 @@
           Door meshes and Gaussians are separated into independent door assets. Gaussians crossing the door-wall
           boundary are split so the door side moves with the door while the wall side remains in the static room asset.
         </p>
-      </div>
-    </section>
-
-    <section class="section hero is-small">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Appearance Preservation Evaluation</h2>
-            <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Asset</th>
-                    <th>PSNR ↑</th>
-                    <th>SSIM ↑</th>
-                    <th>LPIPS ↓</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Asset 1</td>
-                    <td>31.85 dB</td>
-                    <td>0.9759</td>
-                    <td>0.0540</td>
-                  </tr>
-                  <tr>
-                    <td>Asset 2</td>
-                    <td>30.48 dB</td>
-                    <td>0.9705</td>
-                    <td>0.0699</td>
-                  </tr>
-                  <tr>
-                    <td>Asset 3</td>
-                    <td>29.54 dB</td>
-                    <td>0.9693</td>
-                    <td>0.0584</td>
-                  </tr>
-                  <tr>
-                    <td>Asset 4</td>
-                    <td>31.24 dB</td>
-                    <td>0.9476</td>
-                    <td>0.0384</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Average</strong></td>
-                    <td><strong>30.78 dB</strong></td>
-                    <td><strong>0.9658</strong></td>
-                    <td><strong>0.0552</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="metric-note">
-              <p>
-                This table evaluates appearance preservation by comparing images rendered from the original
-                3DGS assets and the refined assets after exterior Gaussian removal and boundary mesh setup.
-                Images are rendered from random indoor camera viewpoints.
-              </p>
-              <p>
-                <strong>PSNR</strong> measures pixel-level similarity; higher is better
-                (&gt;30 dB: high, 25-30 dB: moderate, &lt;25 dB: noticeable difference).
-                <strong>SSIM</strong> measures structural similarity; higher is better
-                (&gt;0.90: high, 0.80-0.90: moderate, &lt;0.80: noticeable difference).
-                <strong>LPIPS</strong> measures perceptual difference using deep features; lower is better
-                (&lt;0.10: high similarity, 0.10-0.20: moderate difference, &gt;0.20: noticeable difference).
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
