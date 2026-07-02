@@ -413,6 +413,14 @@ figcaption {
   text-align: center;
 }
 
+.overview-note p {
+  margin: 0;
+}
+
+.overview-note p + p {
+  margin-top: 0.35rem;
+}
+
 .overview-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
