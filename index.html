@@ -55,11 +55,6 @@
                     <span>▶️ Demo Video</span>
                   </a>
                 </span>
-                <span class="link-block">
-                  <a class="external-link button is-normal is-rounded is-dark" href="https://splat.wiki" target="_blank" rel="noreferrer">
-                    <span>🌐 Website</span>
-                  </a>
-                </span>
               </div>
             </div>
           </div>
@@ -72,12 +67,12 @@
         <div class="hero-body">
           <div class="teaser-grid">
             <figure>
-              <img src="assets/media/corridor_before.gif" alt="Before alignment, corridor-only digital twin" />
-              <figcaption>Before: corridor-only digital twin</figcaption>
+              <img src="assets/media/corridor_before.gif" alt="Initial corridor-only digital twin" />
+              <figcaption>Initial corridor-only digital twin</figcaption>
             </figure>
             <figure>
-              <img src="assets/media/corridor_after.gif" alt="After alignment, rooms connected to the corridor" />
-              <figcaption>After: rooms connected through door-based alignment</figcaption>
+              <img src="assets/media/corridor_after.gif" alt="Expanded digital twin using our door-based alignment method" />
+              <figcaption>Expanded digital twin via our door-based alignment method</figcaption>
             </figure>
           </div>
         </div>
@@ -87,6 +82,10 @@
     <section class="section hero is-light overview">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered section-title">Method Overview</h2>
+        <p class="overview-note">
+          Our method takes existing 3DGS assets as input and refines and aligns them without requiring additional training,
+          enabling crowdsourced construction of modular indoor digital twins.
+        </p>
         <div class="overview-grid">
           <div class="overview-item">
             <span class="step-number">1</span>
@@ -129,12 +128,68 @@
             <figcaption>Interior view</figcaption>
           </figure>
         </div>
-        <p class="section-note">
-          See an unrefined indoor 3DGS asset example:
-          <a href="https://superspl.at/scene/d4342240" target="_blank" rel="noreferrer">Open 3DGS scene</a>.
-        </p>
+        <div class="method-detail">
+          <p>
+            Asset refinement converts each room-level 3DGS asset into a clean module by removing exterior and
+            boundary-crossing Gaussians, then baking their appearance onto boundary mesh textures. This keeps the
+            view from inside the room while preventing neighboring modules from visually colliding after alignment.
+          </p>
+          <div class="method-links" aria-label="Asset refinement explanations">
+            <p>
+              See an unrefined indoor 3DGS asset example:
+              <a href="https://superspl.at/scene/d4342240" target="_blank" rel="noreferrer">Open 3DGS scene</a>.
+            </p>
+            <p>
+              Why is refinement needed?
+              <a href="#refinement-need-modal" data-modal-target="refinement-need-modal">View explanation</a>.
+            </p>
+            <p>
+              Why remove boundary-crossing Gaussians?
+              <a href="#boundary-gaussian-modal" data-modal-target="boundary-gaussian-modal">View explanation</a>.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
+
+    <div class="modal" id="refinement-need-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="refinement-need-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" type="button" aria-label="Close modal" data-modal-close>&times;</button>
+        <h3 class="title is-4" id="refinement-need-title">Why Is Refinement Needed?</h3>
+        <img src="assets/media/unrefined_module_collision.gif" alt="Unrefined 3DGS modules visually colliding outside room boundaries" />
+        <p>
+          Indoor 3DGS reconstruction often creates large, blurry Gaussians around room boundaries to represent
+          low-frequency wall color and lighting. A single asset can still look plausible, but when multiple room
+          modules are connected, these Gaussians can leak into adjacent spaces and cause visible overlap. Refinement
+          removes those out-of-room contributions and replaces boundary appearance with mesh textures.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal" id="boundary-gaussian-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="boundary-gaussian-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" type="button" aria-label="Close modal" data-modal-close>&times;</button>
+        <h3 class="title is-4" id="boundary-gaussian-title">Why Remove Boundary-Crossing Gaussians?</h3>
+        <div class="modal-image-grid">
+          <figure>
+            <img src="assets/media/intersection_artifact.png" alt="Intersection artifact before removing boundary-crossing Gaussians" />
+            <figcaption>Before removal</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/media/intersection_artifact_refined.png" alt="Clean boundary after removing boundary-crossing Gaussians" />
+            <figcaption>After removal</figcaption>
+          </figure>
+        </div>
+        <p>
+          Removing only Gaussians whose centers are outside the room is not enough. Some Gaussians remain centered
+          inside the room but still extend across the boundary plane. When those Gaussians overlap with the boundary
+          mesh, line-shaped intersection artifacts appear. We therefore remove Gaussians whose effective rendering
+          range crosses the boundary and bake their appearance onto the mesh instead.
+        </p>
+      </div>
+    </div>
 
     <section class="section hero is-light">
       <div class="container is-max-desktop">
@@ -144,6 +199,10 @@
             <img src="assets/media/sam3.gif" alt="SAM3-assisted door corner extraction" />
             <figcaption>SAM3-based door extraction</figcaption>
           </figure>
+          <p class="method-caption">
+            Door extraction segments the door region with SAM3 and computes intersections with the wall boundary plane
+            to estimate reliable 3D door corners for alignment.
+          </p>
         </div>
       </div>
     </section>
@@ -156,6 +215,10 @@
             <img src="assets/media/alignment.gif" alt="Automatic door-based module alignment" />
             <figcaption>Door-based alignment</figcaption>
           </figure>
+          <p class="method-caption">
+            Corresponding door corners define the transformation matrix between modules. The matrix is then used to
+            connect a new room asset to the existing digital twin.
+          </p>
         </div>
       </div>
     </section>
@@ -167,6 +230,10 @@
           <img src="assets/media/door_openclose.gif" alt="Interactive door opening and closing in the viewer" />
           <figcaption>Open/close interaction after module alignment</figcaption>
         </figure>
+        <p class="method-caption">
+          Door meshes and Gaussians are separated into independent door assets. Gaussians crossing the door-wall
+          boundary are split so the door side moves with the door while the wall side remains in the static room asset.
+        </p>
       </div>
     </section>
 
@@ -311,6 +378,38 @@
           });
 
           startTogether(videos);
+        });
+
+        let activeModal = null;
+
+        const closeModal = () => {
+          if (!activeModal) return;
+          activeModal.classList.remove("is-open");
+          activeModal.setAttribute("aria-hidden", "true");
+          activeModal = null;
+          document.body.style.overflow = "";
+        };
+
+        document.querySelectorAll("[data-modal-target]").forEach((trigger) => {
+          trigger.addEventListener("click", (event) => {
+            event.preventDefault();
+            const modal = document.getElementById(trigger.dataset.modalTarget);
+            if (!modal) return;
+            activeModal = modal;
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+            const closeButton = modal.querySelector("button[data-modal-close]");
+            if (closeButton) closeButton.focus();
+          });
+        });
+
+        document.querySelectorAll("[data-modal-close]").forEach((control) => {
+          control.addEventListener("click", closeModal);
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") closeModal();
         });
       })();
     </script>
