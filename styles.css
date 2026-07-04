@@ -138,11 +138,19 @@ video {
 }
 
 .publication-venue {
-  margin: 0.3rem 0 1.05rem;
+  margin: 0.3rem 0 0.25rem;
   color: #4a4a4a;
   font-size: clamp(1.55rem, 2.4vw, 2.15rem);
   font-weight: 400;
   line-height: 1.25;
+}
+
+.publication-award {
+  margin: 0 0 1.05rem;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .publication-authors {
