@@ -410,27 +410,50 @@
 
         let activeModal = null;
 
+        const triggers = document.querySelectorAll("[data-modal-target]");
+
         const closeModal = () => {
           if (!activeModal) return;
+          if (window.location.hash === "#" + activeModal.id) {
+            history.replaceState(history.state, "", window.location.pathname + window.location.search);
+          }
           activeModal.classList.remove("is-open");
           activeModal.setAttribute("aria-hidden", "true");
           activeModal = null;
           document.body.style.overflow = "";
         };
 
-        document.querySelectorAll("[data-modal-target]").forEach((trigger) => {
+        const openModal = (trigger) => {
+          const modal = document.getElementById(trigger.dataset.modalTarget);
+          if (!modal || modal === activeModal) return;
+          closeModal();
+          activeModal = modal;
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          const closeButton = modal.querySelector("button[data-modal-close]");
+          if (closeButton) closeButton.focus();
+        };
+
+        triggers.forEach((trigger) => {
           trigger.addEventListener("click", (event) => {
             event.preventDefault();
-            const modal = document.getElementById(trigger.dataset.modalTarget);
-            if (!modal) return;
-            activeModal = modal;
-            modal.classList.add("is-open");
-            modal.setAttribute("aria-hidden", "false");
-            document.body.style.overflow = "hidden";
-            const closeButton = modal.querySelector("button[data-modal-close]");
-            if (closeButton) closeButton.focus();
+            openModal(trigger);
           });
         });
+
+        const openLinkedModal = () => {
+          const trigger = Array.from(triggers).find((item) => item.hash === window.location.hash);
+          if (trigger) {
+            trigger.scrollIntoView({ block: "center" });
+            openModal(trigger);
+          } else {
+            closeModal();
+          }
+        };
+
+        window.addEventListener("hashchange", openLinkedModal);
+        openLinkedModal();
 
         document.querySelectorAll("[data-modal-close]").forEach((control) => {
           control.addEventListener("click", closeModal);
